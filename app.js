@@ -1,5 +1,6 @@
 const express = require('express');
 const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config({
@@ -14,6 +15,9 @@ const HyperSchema = require('./models/Hyperlink');
 dbConnect();
 
 const app = express();
+
+const server_http = http.createServer(app);
+const server_https = https.createServer(app);
 
 app.use(sanitize());
 app.use(cors());
@@ -81,10 +85,18 @@ app.put('/:hyper', async (req, res, next) => {
   }
 });
 
-app.listen(process.env.PORT, (err) => {
+server_http.listen(process.env.PORT, (err) => {
   if (err) {
     throw err;
   } else {
     console.log(`[Hyper] Listening on port ${process.env.PORT}`);
+  }
+});
+
+server_https.listen(process.env.PORT_HTTPS, (err) => {
+  if (err) {
+    throw err;
+  } else {
+    console.log(`[Hyper] HTTPS Listening on port ${process.env.PORT_HTTPS}`);
   }
 });
