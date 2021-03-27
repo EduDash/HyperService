@@ -28,14 +28,13 @@ app.get('/:hyper', async (req, res, next) => {
     console.log(`Cache miss ${req.params.hyper}`);
     const foundLink = await HyperSchema.findOne({ name: hyper });
     if (!foundLink) {
-      return res.end();
-      // return res.redirect(`https://docs.edudash.org`);
+      return res.redirect(`https://edudash.org`);
     } else {
       cache[hyper] = foundLink.href;
       return res.redirect(foundLink.href);
     }
   } catch (ex) {
-    res.redirect(`https://docs.edudash.org`);
+    res.redirect(`https://edudash.org`);
   }
 });
 
