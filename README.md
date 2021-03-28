@@ -21,7 +21,6 @@ Before you begin, some variables need to be configured at your [config/.env](con
 | ADMIN_KEY  | secret                    | The secret authorization header to edit hyperlinks.    |
 | MONGO_URI  | mongodb://localhost:27017 | The MongoDB connection URI for storage of hyperlinks.  |
 
-<br />
 ## Running HyperService
 
 First, clone HyperService with
